@@ -18,7 +18,7 @@ function HeartSVG({ filled }: { filled: boolean }) {
             stroke="currentColor"
             strokeWidth={filled ? 0 : 4}
         >
-            <path d="M88.748,28.822C87.433,14.123,76.639,6.532,67.17,5.703C55.521,4.682,49.389,8.26,44.38,13.056
+            <path suppressHydrationWarning d="M88.748,28.822C87.433,14.123,76.639,6.532,67.17,5.703C55.521,4.682,49.389,8.26,44.38,13.056
               C39.372,8.257,33.218,4.677,21.59,5.7C12.116,6.53,1.324,14.121,0.014,28.822L0,33.34l0.011,0.303
               C1.346,49.021,15.246,64.855,42.51,82.055l1.868,1.182l1.869-1.182c27.263-17.199,41.166-33.037,42.498-48.411l0.017-4.511
               L88.748,28.822z" />
@@ -34,13 +34,18 @@ export default function LikeButton({ postId, initialLikes, initialLiked, isAutho
     async function handleLike() {
         if (loading) return;
         setLoading(true);
-        const res = await fetch(`/api/posts/${postId}/likes`, { method: 'POST' });
-        if (res.ok) {
+        try {
+            const res = await fetch(`/api/posts/${postId}/likes`, { method: 'POST' });
             const data = await res.json();
-            setLiked(data.liked);
-            setLikes(data.likes);
+            if (res.ok) {
+                setLiked(data.liked);
+                setLikes(data.likes);
+            } else {
+                console.error('Like failed:', res.status, data);
+            }
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     return (

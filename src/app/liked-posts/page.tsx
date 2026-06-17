@@ -31,10 +31,10 @@ export default async function LikedPostsPage() {
   return (
     <main>
       <div className={pageLayout.mainCenter}>
-        <h1 className='text-6xl font-extrabold mt-8 text-blue-800'>Your liked posts!</h1>
+        <h1 className='text-5xl font-extrabold mt-8 text-blue-800'>Your liked posts!</h1>
         <div className="flex flex-col gap-8 mt-8">
           {posts.length === 0 ? (
-            <p className="text-gray-400">You haven't liked any posts yet.</p>
+            <p className="mb-6">You haven't liked any posts yet.</p>
           ) : (
             posts.map((post) => (
               <PostCard key={post._id} post={post} isLoggedIn={true} currentUserId={currentUserId} />

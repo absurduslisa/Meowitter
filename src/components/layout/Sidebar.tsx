@@ -28,7 +28,7 @@ export default function Sidebar({ currentUserId, isOpen, onClose }: Props) {
     }, [isOpen, onClose]);
 
     return (
-        <aside onClick={onClose} className={`card tab sidebar bg-sea-light ${isOpen ? 'shown' : ''}`}>
+        <aside onClick={onClose} className={`card tab sidebar md:min-h-fit top-20 lg:top-12 bg-sea-light ${isOpen ? 'shown' : ''}`}>
             <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-3 right-3 text-xl">✕</button>
             <div className="flex flex-col gap-4 items-center">
                 <div className='frame w-48 h-48'>
@@ -40,6 +40,9 @@ export default function Sidebar({ currentUserId, isOpen, onClose }: Props) {
                 </div>
                 <Link href='/liked-posts' className='btn text-sm hover:bg-sea w-full py-4'>Liked Posts</Link>
                 <UploadAvatar />
+                {/* // my posts
+                // followings
+                // followers */}
                 <LogoutButton />
             </div>
         </aside>

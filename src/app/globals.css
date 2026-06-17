@@ -28,7 +28,18 @@
   --color-blue: lab(39 -6.98 -38.09);
   /* --color-blue: oklch(50.226% 0.24476 273.908); */
   --color-black: oklch(24.74% 0.01083 17.767);
-  
+}
+
+* {
+  cursor: url('/cursor.png') 0 0, auto;
+}
+
+button, a, label, .btn {
+  cursor: url('/cursor-pointer.png') 0 0, pointer;
+}
+
+button *, a *, label *, .btn * {
+  cursor: inherit;
 }
 
 :root {
@@ -94,14 +105,10 @@ body {
   }
 }
 
-button {
-  @apply cursor-pointer;
-}
-
 .sidebar {
   position: fixed;
   width: 270px;
-  min-height: fit-content;
+  overflow-y: auto;
   right: 0;
   transform: translateX(100%);
   visibility: hidden;
@@ -113,7 +120,7 @@ button {
   }
 }
 
-  .accountsbar {
+.accountsbar {
   position: fixed;
   width: fit-content;
   left: 0;

@@ -36,7 +36,7 @@ export default function UploadAvatar() {
         <div className="btn flex flex-col items-center gap-3 hover:bg-sea w-full py-4">
             {error && <p className="text-red-400 text-xs">{error}</p>}
 
-            <label className=" cursor-pointer text-sm">
+            <label className=" text-sm">
                 {uploading ? 'Uploading...' : 'Change avatar'}
                 <input
                     type="file"

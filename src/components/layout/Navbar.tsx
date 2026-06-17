@@ -24,20 +24,19 @@ export default function Navbar() {
                     <a href="/auth" className="btn tab hover:bg-sea">Login</a>
                 )}
             </header>
-                { session ? (
+            { session ? (
+            <div className='flex flex-row m-4 lg:m-0 items-center justify-between'>
                     <button onClick={() => setAccountsState(!accountsState) }
-                        className="btn card p-0 fixed left-12 bg-pink  w-48 h-24 border-2 border-black">
+                    className="btn card p-0 lg:fixed lg:left-12 lg:top-12 bg-pink  w-48 h-24 border-2 border-black">
                     Accounts
                     </button>
-                ) : ''}
-
-                { session ? (
                     <button onClick={() => setMenuState(!menuState) }
-                        className="card p-0 fixed right-12 overflow-hidden w-48 h-48 border-2 border-black">
+                    className="btn card p-0 lg:fixed lg:right-12 lg:top-12 overflow-hidden w-48 h-48 border-2 border-black">
                         <Avatar/>
                     </button>
+                </div>
                 ) : ''}
-                <AccountsList currentUserId={currentUserId} isOpen={accountsState} onClose={() => setAccountsState(false)}/>
+            <AccountsList currentUserId={currentUserId} isOpen={accountsState} onClose={() => setAccountsState(false)}/>
             <Sidebar currentUserId={currentUserId} isOpen={menuState} onClose={() => setMenuState(false)}/>
         </>
     )
