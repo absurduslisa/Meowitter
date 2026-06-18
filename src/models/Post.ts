@@ -4,7 +4,6 @@ export interface IPostDoc extends Document {
     author: Types.ObjectId;
     text: string;
     translatedText: string;
-    // likes: number;
     createdAt: Date;
     // comments?: Types.ObjectId;
     // isRepost: boolean;

@@ -28,15 +28,14 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
 
         if (existingLike) {
             await Like.deleteOne({ _id: existingLike._id });
-            post.likes = Math.max(0, post.likes - 1);
-            await post.save();
-            return Response.json({ liked: false, likes: post.likes });
         } else {
             await Like.create({ post: postId, user: userId });
-            post.likes += 1;
-            await post.save();
-            return Response.json({ liked: true, likes: post.likes });
         }
+
+        const actualLikes = await Like.countDocuments({ post: postId });
+        post.likes = actualLikes;
+        await post.save();
+        return Response.json({ liked: !existingLike, likes: actualLikes });
     } catch (error) {
         return Response.json({ error: 'Server error' }, { status: 500 });
     }
