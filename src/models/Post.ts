@@ -4,6 +4,7 @@ export interface IPostDoc extends Document {
     author: Types.ObjectId;
     text: string;
     translatedText: string;
+    likes: number;
     createdAt: Date;
     // comments?: Types.ObjectId;
     // isRepost: boolean;
@@ -14,6 +15,7 @@ const PostSchema = new Schema<IPostDoc>({
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     text: { type: String, required: true, maxlength: 500 },
     translatedText: { type: String, maxlength: 500 },
+    likes: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now },
     // comments: { type: Schema.Types.ObjectId, ref: 'Comments' },
     // isRepost: { type: Boolean, default: false },
